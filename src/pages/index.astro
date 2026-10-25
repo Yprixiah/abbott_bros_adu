@@ -1,16 +1,400 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Abbott Brothers Development | Premium ADUs"
+  description="Thoughtfully designed prefabricated ADUs, personalized for your property and lifestyle."
+>
+  <section class="hero">
+    <div class="hero__inner page-width">
+      <div class="hero__copy">
+        <p class="eyebrow">Abbott Brothers Development</p>
+
+        <h1 class="display">
+          Timeless spaces.<br />
+          Made for the way you live.
+        </h1>
+
+        <p class="lede">
+          Thoughtfully designed ADUs with a simpler path from
+          inspiration to a finished space on your property.
+        </p>
+
+        <div class="hero__actions">
+          <a class="button" href="#models">Explore the Models</a>
+          <a class="button button--secondary" href="#contact">
+            Request a Quote
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="hero__media placeholder-media"
+        aria-label="Future Abbott Brothers exterior hero image"
+      >
+        <span>Hero imagery</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section intro">
+    <div class="page-width intro__grid">
+      <p class="eyebrow">A better way to add space</p>
+
+      <div>
+        <h2 class="heading">
+          Start with a proven design. Make it your own.
+        </h2>
+
+        <p class="lede">
+          Choose the ADU that fits your property and your plans.
+          Abbott Brothers coordinates the design selections, site
+          preparation, manufacturing, delivery, and finishing that
+          turn it into a place that feels like yours.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="models" class="section models">
+    <div class="page-width">
+      <p class="eyebrow">The collection</p>
+      <h2 class="heading">Three starting points.</h2>
+
+      <div class="models__grid">
+        <article class="model-card">
+          <div class="placeholder-media"></div>
+          <p class="model-card__number">01</p>
+          <h3 class="subheading">Model One</h3>
+          <p>A compact, considered starting point for flexible living.</p>
+        </article>
+
+        <article class="model-card">
+          <div class="placeholder-media"></div>
+          <p class="model-card__number">02</p>
+          <h3 class="subheading">Model Two</h3>
+          <p>Expanded living with room for guests, work, and everyday life.</p>
+        </article>
+
+        <article class="model-card">
+          <div class="placeholder-media"></div>
+          <p class="model-card__number">03</p>
+          <h3 class="subheading">Model Three</h3>
+          <p>A more expansive footprint designed around indoor-outdoor living.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section process">
+    <div class="page-width">
+      <p class="eyebrow">From idea to your property</p>
+      <h2 class="heading">A coordinated path from design to delivery.</h2>
+
+      <div class="process__grid">
+        <div>
+          <span>01</span>
+          <h3>Choose</h3>
+          <p>Start with the model that best fits your property and intended use.</p>
+        </div>
+
+        <div>
+          <span>02</span>
+          <h3>Personalize</h3>
+          <p>Shape the finishes, furnishings, and character of your space.</p>
+        </div>
+
+        <div>
+          <span>03</span>
+          <h3>Prepare</h3>
+          <p>Abbott Brothers coordinates the local infrastructure and site work.</p>
+        </div>
+
+        <div>
+          <span>04</span>
+          <h3>Manufacture</h3>
+          <p>The structure is prefabricated off-site in a controlled environment.</p>
+        </div>
+
+        <div>
+          <span>05</span>
+          <h3>Deliver</h3>
+          <p>The finished structure is transported and placed on the prepared site.</p>
+        </div>
+
+        <div>
+          <span>06</span>
+          <h3>Finish</h3>
+          <p>Abbott Brothers brings the selected interior and furnishing package together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section manufacture">
+    <div class="page-width manufacture__grid">
+      <div class="placeholder-media"></div>
+
+      <div>
+        <p class="eyebrow">Built off-site</p>
+        <h2 class="heading">Less construction in your backyard.</h2>
+
+        <p class="lede">
+          The structural building is manufactured off-site while the property
+          is prepared for its arrival. The result is a more coordinated path
+          from fabrication to installation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section property">
+    <div class="page-width">
+      <p class="eyebrow">Made for your property</p>
+      <h2 class="heading">
+        Guest house. Pool house.<br />
+        Office. Retreat. Yours.
+      </h2>
+
+      <div class="property__media placeholder-media"></div>
+    </div>
+  </section>
+
+  <section class="section living">
+    <div class="page-width living__grid">
+      <div>
+        <p class="eyebrow">Designed to live in</p>
+        <h2 class="heading">The details matter inside, too.</h2>
+
+        <p class="lede">
+          Thoughtful kitchens, comfortable living spaces, bedrooms,
+          baths, and finishes turn a prefabricated structure into a
+          space that belongs on your property.
+        </p>
+      </div>
+
+      <div class="placeholder-media"></div>
+    </div>
+  </section>
+
+  <section id="about" class="section about">
+    <div class="page-width about__grid">
+      <p class="eyebrow">Abbott Brothers</p>
+
+      <h2 class="heading">
+        We simplify the build so you can focus on the space.
+      </h2>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact">
+    <div class="page-width contact__inner">
+      <p class="eyebrow">Start a conversation</p>
+
+      <h2 class="heading">Have a property in mind?</h2>
+
+      <p class="lede">
+        Tell us what you are considering and which model interests you.
+      </p>
+
+      <a class="button contact__button" href="mailto:">
+        Request a Quote
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 7vw, 6rem);
+  }
+
+  .hero__inner {
+    display: grid;
+    min-height: calc(100vh - 10rem);
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: clamp(2.5rem, 6vw, 6rem);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2.25rem;
+  }
+
+  .hero__media {
+    display: grid;
+    min-height: min(68vh, 48rem);
+    place-items: center;
+    color: rgba(38, 50, 41, 0.38);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+  }
+
+  .intro {
+    border-top: 1px solid rgba(38, 50, 41, 0.12);
+  }
+
+  .intro__grid,
+  .about__grid {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.6fr) minmax(0, 1.5fr);
+    gap: 3rem;
+  }
+
+  .models {
+    background: var(--color-ivory-soft);
+  }
+
+  .models__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.2rem, 2.5vw, 2rem);
+    margin-top: 4rem;
+  }
+
+  .model-card .placeholder-media {
+    min-height: 18rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .model-card__number {
+    margin: 0 0 0.6rem;
+    color: var(--color-gold);
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.14em;
+  }
+
+  .model-card p:last-child {
+    max-width: 28rem;
+    margin-bottom: 0;
+    color: var(--color-olive-soft);
+  }
+
+  .process {
+    background: var(--color-olive);
+    color: var(--color-ivory);
+  }
+
+  .process .eyebrow {
+    color: var(--color-gold-soft);
+  }
+
+  .process__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 4rem;
+    border-top: 1px solid rgba(244, 240, 231, 0.22);
+    border-left: 1px solid rgba(244, 240, 231, 0.22);
+  }
+
+  .process__grid > div {
+    min-height: 15rem;
+    padding: 2rem;
+    border-right: 1px solid rgba(244, 240, 231, 0.22);
+    border-bottom: 1px solid rgba(244, 240, 231, 0.22);
+  }
+
+  .process__grid span {
+    color: var(--color-gold-soft);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .process__grid h3 {
+    margin: 2rem 0 0.6rem;
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 400;
+  }
+
+  .process__grid p {
+    margin: 0;
+    color: rgba(244, 240, 231, 0.68);
+  }
+
+  .manufacture__grid,
+  .living__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: clamp(3rem, 7vw, 7rem);
+  }
+
+  .property {
+    background: var(--color-ivory-soft);
+  }
+
+  .property__media {
+    min-height: min(65vh, 44rem);
+    margin-top: 3rem;
+  }
+
+  .about {
+    border-top: 1px solid rgba(38, 50, 41, 0.12);
+  }
+
+  .contact {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  .contact__inner {
+    text-align: center;
+  }
+
+  .contact .eyebrow {
+    color: rgba(29, 33, 30, 0.65);
+  }
+
+  .contact .lede {
+    margin-inline: auto;
+  }
+
+  .contact__button {
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero__inner,
+    .manufacture__grid,
+    .living__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__inner {
+      min-height: auto;
+    }
+
+    .hero__media {
+      min-height: 32rem;
+    }
+
+    .models__grid,
+    .process__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .intro__grid,
+    .about__grid,
+    .models__grid,
+    .process__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__media {
+      min-height: 26rem;
+    }
+
+    .property__media {
+      min-height: 25rem;
+    }
+  }
+</style>

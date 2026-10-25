@@ -1,0 +1,57 @@
+<footer class="footer">
+  <div class="footer__inner page-width">
+    <div>
+      <p class="footer__brand">Abbott Brothers Development</p>
+      <p class="footer__note">
+        Premium prefabricated ADUs designed around the way you live.
+      </p>
+    </div>
+
+    <div class="footer__meta">
+      <span>California</span>
+      <span>© {new Date().getFullYear()}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: 3rem;
+    background: var(--color-olive);
+    color: var(--color-ivory);
+  }
+
+  .footer__inner {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .footer__brand {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+  }
+
+  .footer__note {
+    max-width: 28rem;
+    margin: 0.6rem 0 0;
+    color: rgba(244, 240, 231, 0.7);
+    font-size: 0.85rem;
+  }
+
+  .footer__meta {
+    display: flex;
+    gap: 1.5rem;
+    color: rgba(244, 240, 231, 0.62);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 650px) {
+    .footer__inner {
+      align-items: start;
+      flex-direction: column;
+    }
+  }
+</style>
