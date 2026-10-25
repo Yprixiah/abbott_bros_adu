@@ -1,0 +1,124 @@
+---
+import type { AduModel } from "../data/models";
+
+interface Props {
+  model: AduModel;
+}
+
+const { model } = Astro.props;
+---
+
+<article class="model-card">
+  <a class="model-card__media" href={`/models/${model.slug}/`}>
+    <img
+      src={model.floorplanPreview}
+      alt={`Floor plan for ${model.name}`}
+      loading="lazy"
+    />
+  </a>
+
+  <div class="model-card__meta">
+    <p class="model-card__number">{model.modelNumber}</p>
+    <p class="model-card__eyebrow">{model.eyebrow}</p>
+
+    <h3 class="model-card__title">
+      <a href={`/models/${model.slug}/`}>{model.name}</a>
+    </h3>
+
+    <p class="model-card__summary">{model.summary}</p>
+
+    <div class="model-card__specs">
+      <span>{model.bedrooms} Bed</span>
+      <span>{model.bathrooms} Bath</span>
+    </div>
+
+    <a class="model-card__link" href={`/models/${model.slug}/`}>
+      Explore {model.name}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .model-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .model-card__media {
+    display: grid;
+    min-height: 18rem;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(38, 50, 41, 0.12);
+    background: #fff;
+  }
+
+  .model-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform var(--transition-medium);
+  }
+
+  .model-card:hover .model-card__media img {
+    transform: scale(1.015);
+  }
+
+  .model-card__meta {
+    padding-top: 1.35rem;
+  }
+
+  .model-card__number,
+  .model-card__eyebrow {
+    margin: 0;
+    color: var(--color-gold);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .model-card__eyebrow {
+    margin-top: 0.35rem;
+    color: var(--color-olive-soft);
+  }
+
+  .model-card__title {
+    margin: 0.7rem 0 0;
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .model-card__summary {
+    margin: 0.8rem 0 0;
+    color: var(--color-olive-soft);
+  }
+
+  .model-card__specs {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    color: var(--color-olive);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .model-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: fit-content;
+    margin-top: 1.25rem;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid rgba(38, 50, 41, 0.35);
+    color: var(--color-olive);
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+</style>

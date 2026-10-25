@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ModelCard from "../components/ModelCard.astro";
+import { models } from "../data/models";
 ---
 
 <BaseLayout
@@ -63,29 +65,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h2 class="heading">Three starting points.</h2>
 
       <div class="models__grid">
-        <article class="model-card">
-          <div class="placeholder-media"></div>
-          <p class="model-card__number">01</p>
-          <h3 class="subheading">The Olive</h3>
-          <p class="model-card__model">Model 01</p>
-          <p>A compact, considered starting point for flexible living.</p>
-        </article>
+        {models.map((model) => <ModelCard model={model} />)}
+      </div>
 
-        <article class="model-card">
-          <div class="placeholder-media"></div>
-          <p class="model-card__number">02</p>
-          <h3 class="subheading">The Cypress</h3>
-          <p class="model-card__model">Model 02</p>
-          <p>Expanded living with room for guests, work, and everyday life.</p>
-        </article>
-
-        <article class="model-card">
-          <div class="placeholder-media"></div>
-          <p class="model-card__number">03</p>
-          <h3 class="subheading">The Laurel</h3>
-          <p class="model-card__model">Model 03</p>
-          <p>A more expansive footprint designed around indoor-outdoor living.</p>
-        </article>
+      <div class="models__all">
+        <a class="button button--secondary" href="/models/">
+          View All Models
+        </a>
       </div>
     </div>
   </section>
@@ -286,32 +272,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     margin-top: 4rem;
   }
 
-  .model-card .placeholder-media {
-    min-height: 18rem;
-    margin-bottom: 1.4rem;
-  }
-
-  .model-card__number {
-    margin: 0 0 0.6rem;
-    color: var(--color-gold);
-    font-size: 0.72rem;
-    font-weight: 750;
-    letter-spacing: 0.14em;
-  }
-
-  .model-card__model {
-    margin: 0.35rem 0 0;
-    color: var(--color-gold);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .model-card p:last-child {
-    max-width: 28rem;
-    margin-bottom: 0;
-    color: var(--color-olive-soft);
+  .models__all {
+    display: flex;
+    justify-content: center;
+    margin-top: 3.5rem;
   }
 
   .process {

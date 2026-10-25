@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ModelCard from "../../components/ModelCard.astro";
+import { models } from "../../data/models";
+---
+
+<BaseLayout
+  title="ADU Models | Abbott Brothers Development"
+  description="Explore The Olive, The Cypress, and The Laurel — three thoughtfully designed ADU models from Abbott Brothers Development."
+>
+  <section class="models-hero section">
+    <div class="page-width models-hero__grid">
+      <div>
+        <p class="eyebrow">The collection</p>
+        <h1 class="display">Three ways to begin.</h1>
+      </div>
+
+      <p class="lede">
+        Start with the model that fits your property and the way you
+        want to use the space. From there, Abbott Brothers helps shape
+        the finishes, furnishings, and final character.
+      </p>
+    </div>
+  </section>
+
+  <section class="section models-list">
+    <div class="page-width models-list__grid">
+      {models.map((model) => <ModelCard model={model} />)}
+    </div>
+  </section>
+
+  <section class="section models-cta">
+    <div class="page-width models-cta__inner">
+      <p class="eyebrow">Not sure where to start?</p>
+      <h2 class="heading">Tell us about your property.</h2>
+
+      <p class="lede">
+        We can help you identify which model makes the most sense for
+        your site, intended use, and goals.
+      </p>
+
+      <a class="button" href="/#contact">Request a Quote</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .models-hero {
+    border-bottom: 1px solid rgba(38, 50, 41, 0.12);
+  }
+
+  .models-hero__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: end;
+    gap: clamp(3rem, 8vw, 8rem);
+  }
+
+  .models-list {
+    background: var(--color-ivory-soft);
+  }
+
+  .models-list__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .models-cta {
+    background: var(--color-gold);
+  }
+
+  .models-cta__inner {
+    max-width: 48rem;
+  }
+
+  .models-cta .button {
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .models-list__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .models-hero__grid,
+    .models-list__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

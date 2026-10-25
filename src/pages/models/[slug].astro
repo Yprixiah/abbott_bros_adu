@@ -1,0 +1,372 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { models } from "../../data/models";
+
+export function getStaticPaths() {
+  return models.map((model) => ({
+    params: { slug: model.slug },
+    props: { model },
+  }));
+}
+
+const { model } = Astro.props;
+---
+
+<BaseLayout
+  title={`${model.name} | Abbott Brothers Development`}
+  description={model.summary}
+>
+  <section class="model-hero section">
+    <div class="page-width model-hero__grid">
+      <div>
+        <p class="eyebrow">{model.modelNumber} · {model.eyebrow}</p>
+        <h1 class="display">{model.name}</h1>
+
+        <p class="lede">{model.description}</p>
+
+        <div class="model-hero__specs">
+          <span>{model.bedrooms} Bedroom{model.bedrooms === 1 ? "" : "s"}</span>
+          <span>{model.bathrooms} Bathroom{model.bathrooms === 1 ? "" : "s"}</span>
+        </div>
+
+        <div class="model-hero__actions">
+          <a class="button" href="/#contact">Request a Quote</a>
+          <a class="button button--secondary" href="#floor-plan">
+            View Floor Plan
+          </a>
+        </div>
+      </div>
+
+      <div class="model-hero__plan">
+        <img
+          src={model.floorplanPreview}
+          alt={`Floor plan preview for ${model.name}`}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section model-details">
+    <div class="page-width model-details__grid">
+      <div>
+        <p class="eyebrow">Designed for everyday use</p>
+        <h2 class="heading">A strong starting point. Ready to become yours.</h2>
+      </div>
+
+      <ul>
+        {model.highlights.map((highlight) => <li>{highlight}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section id="floor-plan" class="section floor-plan">
+    <div class="page-width">
+      <div class="floor-plan__heading">
+        <div>
+          <p class="eyebrow">Floor plan</p>
+          <h2 class="heading">See how the space comes together.</h2>
+        </div>
+
+        <a
+          class="button button--secondary"
+          href={model.floorplanPdf}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open Original Plan
+        </a>
+      </div>
+
+      <div class="floor-plan__image">
+        <img
+          src={model.floorplanPreview}
+          alt={`Detailed floor plan for ${model.name}`}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section model-gallery">
+    <div class="page-width">
+      <div class="model-gallery__heading">
+        <div>
+          <p class="eyebrow">Living experience</p>
+          <h2 class="heading">See the space come to life.</h2>
+        </div>
+
+        <p class="lede">
+          These images illustrate the character and lifestyle direction
+          of the Abbott Brothers collection. Final imagery can be refined
+          as model-specific photography becomes available.
+        </p>
+      </div>
+
+      <div class="model-gallery__grid">
+        {model.gallery.map((image) => (
+          <figure class="model-gallery__item">
+            <img src={image.src} alt={image.alt} loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section make-yours">
+    <div class="page-width">
+      <div class="make-yours__intro">
+        <div>
+          <p class="eyebrow">Make it yours</p>
+          <h2 class="heading">The model is the beginning, not the finish.</h2>
+        </div>
+
+        <p class="lede">
+          Abbott Brothers works with you on the selections that shape
+          how the finished ADU looks and feels, while coordinating the
+          path from site preparation through delivery and furnishing.
+        </p>
+      </div>
+
+      <div class="make-yours__options">
+        {model.customization.map((item, index) => (
+          <article>
+            <span>0{index + 1}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section model-contact">
+    <div class="page-width model-contact__inner">
+      <p class="eyebrow">{model.name}</p>
+      <h2 class="heading">Could this work on your property?</h2>
+      <p class="lede">
+        Start a conversation with Abbott Brothers about your site,
+        intended use, and project goals.
+      </p>
+      <a class="button" href="/#contact">Request a Quote</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .model-hero__grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    align-items: center;
+    gap: clamp(3rem, 7vw, 7rem);
+  }
+
+  .model-hero__specs {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    color: var(--color-gold);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .model-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .model-hero__plan {
+    display: grid;
+    min-height: 30rem;
+    place-items: center;
+    border: 1px solid rgba(38, 50, 41, 0.12);
+    background: #fff;
+  }
+
+  .model-hero__plan img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .model-details {
+    background: var(--color-olive);
+    color: var(--color-ivory);
+  }
+
+  .model-details__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(3rem, 8vw, 8rem);
+  }
+
+  .model-details ul {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid rgba(244, 240, 231, 0.2);
+  }
+
+  .model-details li {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(244, 240, 231, 0.2);
+  }
+
+  .floor-plan__heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .floor-plan__image {
+    display: grid;
+    min-height: 36rem;
+    margin-top: 3rem;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(38, 50, 41, 0.12);
+    background: #fff;
+  }
+
+  .floor-plan__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .model-gallery {
+    background: var(--color-ivory-soft);
+  }
+
+  .model-gallery__heading {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    align-items: end;
+    gap: clamp(3rem, 8vw, 8rem);
+  }
+
+  .model-gallery__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .model-gallery__item {
+    margin: 0;
+    overflow: hidden;
+    background: var(--color-stone);
+  }
+
+  .model-gallery__item:first-child {
+    grid-row: span 2;
+  }
+
+  .model-gallery__item img {
+    width: 100%;
+    height: 100%;
+    min-height: 18rem;
+    object-fit: cover;
+    transition: transform var(--transition-medium);
+  }
+
+  .model-gallery__item:first-child img {
+    min-height: 37rem;
+  }
+
+  .model-gallery__item:hover img {
+    transform: scale(1.015);
+  }
+
+  .make-yours {
+    background: var(--color-ivory-soft);
+  }
+
+  .make-yours__intro {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: end;
+    gap: clamp(3rem, 8vw, 8rem);
+  }
+
+  .make-yours__options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 4rem;
+    border-top: 1px solid rgba(38, 50, 41, 0.18);
+    border-left: 1px solid rgba(38, 50, 41, 0.18);
+  }
+
+  .make-yours__options article {
+    min-height: 14rem;
+    padding: 1.75rem;
+    border-right: 1px solid rgba(38, 50, 41, 0.18);
+    border-bottom: 1px solid rgba(38, 50, 41, 0.18);
+  }
+
+  .make-yours__options span {
+    color: var(--color-gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .make-yours__options h3 {
+    margin: 2rem 0 0.7rem;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  .make-yours__options p {
+    margin: 0;
+    color: var(--color-olive-soft);
+  }
+
+  .model-contact {
+    background: var(--color-gold);
+  }
+
+  .model-contact__inner {
+    max-width: 50rem;
+  }
+
+  .model-contact .button {
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 800px) {
+    .model-hero__grid,
+    .model-details__grid,
+    .model-gallery__heading,
+    .make-yours__intro {
+      grid-template-columns: 1fr;
+    }
+
+    .model-gallery__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .model-gallery__item:first-child {
+      grid-row: auto;
+    }
+
+    .model-gallery__item:first-child img,
+    .model-gallery__item img {
+      min-height: 24rem;
+    }
+
+    .make-yours__options {
+      grid-template-columns: 1fr;
+    }
+
+    .floor-plan__heading {
+      align-items: start;
+      flex-direction: column;
+    }
+  }
+</style>
