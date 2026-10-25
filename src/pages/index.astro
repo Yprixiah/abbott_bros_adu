@@ -123,16 +123,72 @@ import { models } from "../data/models";
 
   <section class="section manufacture">
     <div class="page-width manufacture__grid">
-      <div class="placeholder-media"></div>
+      <div class="offsite-card" aria-label="Off-site fabrication process">
+        <div class="offsite-card__header">
+          <p class="offsite-card__eyebrow">Manufacturing partner</p>
+          <h3 class="offsite-card__title">Off-site fabrication</h3>
+          <p class="offsite-card__meta">
+            Xtreme Manufacturing · Las Vegas area, Nevada
+          </p>
+        </div>
+
+        <div class="offsite-card__steps">
+          <div class="offsite-step">
+            <span class="offsite-step__number">01</span>
+
+            <div>
+              <h4>Fabricate</h4>
+              <p>
+                The structural shell is built off-site in a controlled
+                manufacturing environment.
+              </p>
+            </div>
+          </div>
+
+          <div class="offsite-step">
+            <span class="offsite-step__number">02</span>
+
+            <div>
+              <h4>Deliver</h4>
+              <p>
+                The completed structure is transported to the prepared
+                property when the site is ready.
+              </p>
+            </div>
+          </div>
+
+          <div class="offsite-step">
+            <span class="offsite-step__number">03</span>
+
+            <div>
+              <h4>Finish</h4>
+              <p>
+                Abbott Brothers coordinates placement, final work,
+                furnishings, and finishing touches.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <a
+          class="offsite-card__link"
+          href="https://www.xmfg.com/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Visit Xtreme Manufacturing <span aria-hidden="true">↗</span>
+        </a>
+      </div>
 
       <div>
         <p class="eyebrow">Built off-site</p>
         <h2 class="heading">Less construction in your backyard.</h2>
 
         <p class="lede">
-          The structural building is manufactured off-site while the property
-          is prepared for its arrival. The result is a more coordinated path
-          from fabrication to installation.
+          The structural building is manufactured off-site by
+          Xtreme Manufacturing while the property is prepared for its
+          arrival. Abbott Brothers coordinates the path from fabrication
+          through delivery, installation, and finishing.
         </p>
       </div>
     </div>
@@ -327,6 +383,95 @@ import { models } from "../data/models";
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
     gap: clamp(3rem, 7vw, 7rem);
+  }
+
+  .offsite-card {
+    display: grid;
+    gap: 1.6rem;
+    min-height: 24rem;
+    padding: clamp(1.5rem, 3vw, 2.2rem);
+    border: 1px solid rgba(38, 50, 41, 0.16);
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.42),
+        rgba(168, 137, 88, 0.06)
+      );
+  }
+
+  .offsite-card__header {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .offsite-card__eyebrow {
+    margin: 0;
+    color: var(--color-gold);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .offsite-card__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    font-weight: 400;
+  }
+
+  .offsite-card__meta {
+    margin: 0;
+    color: var(--color-olive-soft);
+    font-size: 0.86rem;
+  }
+
+  .offsite-card__steps {
+    display: grid;
+  }
+
+  .offsite-step {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(38, 50, 41, 0.14);
+  }
+
+  .offsite-step__number {
+    color: var(--color-gold);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .offsite-step h4 {
+    margin: 0 0 0.25rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 400;
+  }
+
+  .offsite-step p {
+    margin: 0;
+    color: var(--color-olive-soft);
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .offsite-card__link {
+    display: inline-flex;
+    gap: 0.4rem;
+    width: fit-content;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid rgba(38, 50, 41, 0.35);
+    color: var(--color-olive);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .offsite-card__link:hover {
+    opacity: 0.65;
   }
 
   .property {
