@@ -1,8 +1,11 @@
 <header class="site-header">
   <div class="site-header__inner page-width">
     <a class="brand" href="/" aria-label="Abbott Brothers Development home">
-      <span class="brand__primary">Abbott Brothers</span>
-      <span class="brand__secondary">Development</span>
+      <img
+        class="brand__banner"
+        src="/assets/brand/ab-banner.png"
+        alt="Abbott Brothers Development"
+      />
     </a>
 
     <nav class="nav" aria-label="Main navigation">
@@ -34,22 +37,14 @@
 
   .brand {
     display: inline-flex;
-    flex-direction: column;
-    color: var(--color-olive);
-    line-height: 1;
+    align-items: center;
+    flex: 0 0 auto;
   }
 
-  .brand__primary {
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-  }
-
-  .brand__secondary {
-    margin-top: 0.35rem;
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+  .brand__banner {
+    display: block;
+    width: clamp(10rem, 15vw, 14rem);
+    height: auto;
   }
 
   .nav {

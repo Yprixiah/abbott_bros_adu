@@ -29,11 +29,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
       </div>
 
-      <div
-        class="hero__media placeholder-media"
-        aria-label="Future Abbott Brothers exterior hero image"
-      >
-        <span>Hero imagery</span>
+      <div class="hero__media">
+        <img
+          src="/assets/images/hero-pool-exterior.webp"
+          alt="Abbott Brothers ADU beside a landscaped backyard pool"
+        />
       </div>
     </div>
   </section>
@@ -66,21 +66,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <article class="model-card">
           <div class="placeholder-media"></div>
           <p class="model-card__number">01</p>
-          <h3 class="subheading">Model One</h3>
+          <h3 class="subheading">The Olive</h3>
+          <p class="model-card__model">Model 01</p>
           <p>A compact, considered starting point for flexible living.</p>
         </article>
 
         <article class="model-card">
           <div class="placeholder-media"></div>
           <p class="model-card__number">02</p>
-          <h3 class="subheading">Model Two</h3>
+          <h3 class="subheading">The Cypress</h3>
+          <p class="model-card__model">Model 02</p>
           <p>Expanded living with room for guests, work, and everyday life.</p>
         </article>
 
         <article class="model-card">
           <div class="placeholder-media"></div>
           <p class="model-card__number">03</p>
-          <h3 class="subheading">Model Three</h3>
+          <h3 class="subheading">The Laurel</h3>
+          <p class="model-card__model">Model 03</p>
           <p>A more expansive footprint designed around indoor-outdoor living.</p>
         </article>
       </div>
@@ -157,7 +160,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         Office. Retreat. Yours.
       </h2>
 
-      <div class="property__media placeholder-media"></div>
+      <div class="property__media">
+        <img
+          src="/assets/images/exterior-rooftop-aerial.webp"
+          alt="Aerial view of an ADU with rooftop terrace and backyard pool"
+        />
+      </div>
     </div>
   </section>
 
@@ -174,13 +182,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </p>
       </div>
 
-      <div class="placeholder-media"></div>
+      <div class="living__media">
+        <img
+          src="/assets/images/interior-kitchen-entertaining.webp"
+          alt="Bright ADU interior with kitchen and entertaining space"
+        />
+      </div>
     </div>
   </section>
 
   <section id="about" class="section about">
     <div class="page-width about__grid">
-      <p class="eyebrow">Abbott Brothers</p>
+      <div>
+        <p class="eyebrow">Abbott Brothers</p>
+        <img
+          class="about__monogram"
+          src="/assets/brand/ab-monogram.png"
+          alt=""
+          aria-hidden="true"
+        />
+      </div>
 
       <h2 class="heading">
         We simplify the build so you can focus on the space.
@@ -206,6 +227,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
+
   .hero {
     padding-block: clamp(3rem, 7vw, 6rem);
   }
@@ -226,12 +248,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .hero__media {
-    display: grid;
     min-height: min(68vh, 48rem);
-    place-items: center;
-    color: rgba(38, 50, 41, 0.38);
-    font-family: var(--font-display);
-    font-size: 1.25rem;
+    overflow: hidden;
+  }
+
+  .hero__media img,
+  .property__media img,
+  .living__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__media img {
+    min-height: min(68vh, 48rem);
   }
 
   .intro {
@@ -267,6 +297,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     font-size: 0.72rem;
     font-weight: 750;
     letter-spacing: 0.14em;
+  }
+
+  .model-card__model {
+    margin: 0.35rem 0 0;
+    color: var(--color-gold);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   .model-card p:last-child {
@@ -331,12 +370,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 
   .property__media {
-    min-height: min(65vh, 44rem);
+    height: min(65vh, 44rem);
     margin-top: 3rem;
+    overflow: hidden;
+  }
+
+  .living__media {
+    min-height: 24rem;
+    overflow: hidden;
+  }
+
+  .living__media img {
+    min-height: 24rem;
   }
 
   .about {
     border-top: 1px solid rgba(38, 50, 41, 0.12);
+  }
+
+  .about__monogram {
+    width: 7rem;
+    margin-top: 1.75rem;
+    opacity: 0.92;
   }
 
   .contact {
