@@ -1,0 +1,487 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { models } from "../../data/models";
+
+
+---
+
+<BaseLayout
+  title="Request a Quote | Abbott Brothers Development"
+  description="Tell Abbott Brothers Development about your property, project goals, and ADU plans."
+>
+  <section class="contact-hero section">
+    <div class="page-width contact-hero__grid">
+      <div>
+        <p class="eyebrow">Start a conversation</p>
+
+        <h1 class="display">
+          Tell us about<br />
+          your property.
+        </h1>
+      </div>
+
+      <div>
+        <p class="lede">
+          Whether you already have a model in mind or are still exploring,
+          tell us a little about your property and how you hope to use the space.
+        </p>
+
+        <div
+          class="contact-hero__selection"
+          id="selected-model-summary"
+          hidden
+        >
+          <span>Currently exploring</span>
+          <strong id="selected-model-name"></strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote section">
+    <div class="page-width quote__grid">
+      <aside class="quote__aside">
+        <p class="eyebrow">What happens next</p>
+
+        <h2 class="subheading">
+          A better first conversation starts with a little context.
+        </h2>
+
+        <p>
+          Share what you know today. You do not need to have every detail
+          figured out before getting in touch.
+        </p>
+
+        <ol>
+          <li>
+            <span>01</span>
+            <div>
+              <strong>Tell us about the property</strong>
+              <p>Location, intended use, and what you are considering.</p>
+            </div>
+          </li>
+
+          <li>
+            <span>02</span>
+            <div>
+              <strong>Explore the right model</strong>
+              <p>We can help determine which starting point makes sense.</p>
+            </div>
+          </li>
+
+          <li>
+            <span>03</span>
+            <div>
+              <strong>Define the next step</strong>
+              <p>From feasibility to selections, site preparation, and delivery.</p>
+            </div>
+          </li>
+        </ol>
+      </aside>
+
+      <form class="quote-form" id="quote-form">
+        <div class="quote-form__row">
+          <label>
+            <span>Name *</span>
+            <input
+              type="text"
+              name="name"
+              autocomplete="name"
+              required
+            />
+          </label>
+
+          <label>
+            <span>Email *</span>
+            <input
+              type="email"
+              name="email"
+              autocomplete="email"
+              required
+            />
+          </label>
+        </div>
+
+        <div class="quote-form__row">
+          <label>
+            <span>Phone</span>
+            <input
+              type="tel"
+              name="phone"
+              autocomplete="tel"
+            />
+          </label>
+
+          <label>
+            <span>Property city or ZIP *</span>
+            <input
+              type="text"
+              name="location"
+              autocomplete="postal-code"
+              required
+            />
+          </label>
+        </div>
+
+        <label>
+          <span>Model of interest</span>
+
+          <select name="model" id="model-select">
+            <option value="">I'm not sure yet</option>
+
+            {
+              models.map((model) => (
+                <option value={model.slug}>
+                  {model.name}
+                </option>
+              ))
+            }
+          </select>
+        </label>
+
+        <label>
+          <span>How do you imagine using the space?</span>
+
+          <select name="use">
+            <option value="">Select an option</option>
+            <option value="guest-house">Guest house</option>
+            <option value="pool-house">Pool house / entertaining</option>
+            <option value="family">Additional family living</option>
+            <option value="office">Home office / studio</option>
+            <option value="rental">Rental / income property</option>
+            <option value="other">Something else</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Approximate timeline</span>
+
+          <select name="timeline">
+            <option value="">Select an option</option>
+            <option value="exploring">Just exploring</option>
+            <option value="0-6">Within 6 months</option>
+            <option value="6-12">6–12 months</option>
+            <option value="12-plus">More than a year</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Tell us a little about your project</span>
+
+          <textarea
+            name="message"
+            rows="6"
+            placeholder="What are you hoping to create? Anything useful about the property, intended use, or priorities can help."
+          ></textarea>
+        </label>
+
+        <div class="quote-form__footer">
+          <button class="button" type="submit">
+            Send Inquiry
+          </button>
+
+          <p>
+            This staging form is not yet connected to Abbott Brothers'
+            inquiry system.
+          </p>
+        </div>
+
+        <div
+          class="quote-form__staging"
+          id="quote-form-staging"
+          role="status"
+          hidden
+        >
+          The form experience is working. Submission delivery will be
+          connected before launch.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="contact-close section">
+    <div class="page-width contact-close__inner">
+      <img
+        src="/assets/brand/olive-tree.png"
+        alt=""
+        aria-hidden="true"
+      />
+
+      <div>
+        <p class="eyebrow">Abbott Brothers Development</p>
+        <h2 class="heading">
+          From an idea in your backyard to a finished space.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const modelNames = {
+      olive: "The Olive",
+      cypress: "The Cypress",
+      laurel: "The Laurel",
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const requestedModel = params.get("model");
+
+    const modelSelect = document.querySelector("#model-select");
+    const selectedModelSummary = document.querySelector(
+      "#selected-model-summary"
+    );
+    const selectedModelName = document.querySelector(
+      "#selected-model-name"
+    );
+
+    if (
+      requestedModel &&
+      requestedModel in modelNames &&
+      modelSelect instanceof HTMLSelectElement
+    ) {
+      modelSelect.value = requestedModel;
+
+      if (
+        selectedModelSummary instanceof HTMLElement &&
+        selectedModelName instanceof HTMLElement
+      ) {
+        selectedModelName.textContent =
+          modelNames[requestedModel as keyof typeof modelNames];
+
+        selectedModelSummary.hidden = false;
+      }
+    }
+
+    const form = document.querySelector("#quote-form");
+    const stagingMessage = document.querySelector("#quote-form-staging");
+
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (form instanceof HTMLFormElement && !form.reportValidity()) {
+        return;
+      }
+
+      if (stagingMessage instanceof HTMLElement) {
+        stagingMessage.hidden = false;
+        stagingMessage.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+        });
+      }
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .contact-hero {
+    border-bottom: 1px solid rgba(38, 50, 41, 0.12);
+  }
+
+  .contact-hero__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: end;
+    gap: clamp(3rem, 8vw, 8rem);
+  }
+
+  .contact-hero__selection {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+    margin-top: 2rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(38, 50, 41, 0.18);
+  }
+
+  .contact-hero__selection span {
+    color: var(--color-gold);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .contact-hero__selection strong {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  .quote {
+    background: var(--color-ivory-soft);
+  }
+
+  .quote__grid {
+    display: grid;
+    grid-template-columns: 0.72fr 1.28fr;
+    align-items: start;
+    gap: clamp(4rem, 8vw, 8rem);
+  }
+
+  .quote__aside {
+    position: sticky;
+    top: 8rem;
+  }
+
+  .quote__aside > p:not(.eyebrow) {
+    color: var(--color-olive-soft);
+  }
+
+  .quote__aside ol {
+    display: grid;
+    gap: 0;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid rgba(38, 50, 41, 0.16);
+  }
+
+  .quote__aside li {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(38, 50, 41, 0.16);
+  }
+
+  .quote__aside li > span {
+    color: var(--color-gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .quote__aside strong {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 400;
+  }
+
+  .quote__aside li p {
+    margin: 0.25rem 0 0;
+    color: var(--color-olive-soft);
+    font-size: 0.88rem;
+  }
+
+  .quote-form {
+    display: grid;
+    gap: 1.5rem;
+    padding: clamp(1.75rem, 4vw, 3.5rem);
+    border: 1px solid rgba(38, 50, 41, 0.16);
+    background: var(--color-ivory);
+  }
+
+  .quote-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .quote-form label {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .quote-form label > span {
+    color: var(--color-olive);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .quote-form input,
+  .quote-form select,
+  .quote-form textarea {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid rgba(38, 50, 41, 0.3);
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+    color: var(--color-ink);
+  }
+
+  .quote-form input,
+  .quote-form select {
+    min-height: 3.4rem;
+  }
+
+  .quote-form textarea {
+    padding: 0.85rem 0;
+    resize: vertical;
+  }
+
+  .quote-form input:focus,
+  .quote-form select:focus,
+  .quote-form textarea:focus {
+    border-color: var(--color-gold);
+  }
+
+  .quote-form__footer {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .quote-form__footer p {
+    max-width: 23rem;
+    margin: 0;
+    color: var(--color-olive-soft);
+    font-size: 0.76rem;
+  }
+
+  .quote-form__staging {
+    padding: 1rem;
+    border-left: 3px solid var(--color-gold);
+    background: rgba(168, 137, 88, 0.08);
+  }
+
+  .contact-close {
+    background: var(--color-olive);
+    color: var(--color-ivory);
+  }
+
+  .contact-close__inner {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    align-items: center;
+    gap: clamp(3rem, 8vw, 7rem);
+  }
+
+  .contact-close img {
+    width: 100%;
+    height: auto;
+  }
+
+  .contact-close .eyebrow {
+    color: var(--color-gold-soft);
+  }
+
+  @media (max-width: 800px) {
+    .contact-hero__grid,
+    .quote__grid,
+    .contact-close__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .quote__aside {
+      position: static;
+    }
+
+    .quote-form__row {
+      grid-template-columns: 1fr;
+    }
+
+    .quote-form__footer {
+      align-items: start;
+      flex-direction: column;
+    }
+
+    .contact-close img {
+      width: 8rem;
+    }
+  }
+</style>

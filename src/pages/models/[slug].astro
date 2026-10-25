@@ -30,7 +30,7 @@ const { model } = Astro.props;
         </div>
 
         <div class="model-hero__actions">
-          <a class="button" href="/#contact">Request a Quote</a>
+          <a class="button" href={`/contact/?model=${model.slug}`}>Request a Quote</a>
           <a class="button button--secondary" href="#floor-plan">
             View Floor Plan
           </a>
@@ -146,7 +146,7 @@ const { model } = Astro.props;
         Start a conversation with Abbott Brothers about your site,
         intended use, and project goals.
       </p>
-      <a class="button" href="/#contact">Request a Quote</a>
+      <a class="button" href={`/contact/?model=${model.slug}`}>Request a Quote</a>
     </div>
   </section>
 </BaseLayout>
