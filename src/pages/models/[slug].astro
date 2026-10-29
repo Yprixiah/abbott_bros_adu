@@ -27,6 +27,7 @@ const { model } = Astro.props;
         <div class="model-hero__specs">
           <span>{model.bedrooms} Bedroom{model.bedrooms === 1 ? "" : "s"}</span>
           <span>{model.bathrooms} Bathroom{model.bathrooms === 1 ? "" : "s"}</span>
+          {model.squareFeet && <span>{model.squareFeet.toLocaleString()} sq ft</span>}
         </div>
 
         <div class="model-hero__actions">
@@ -115,14 +116,14 @@ const { model } = Astro.props;
     <div class="page-width">
       <div class="make-yours__intro">
         <div>
-          <p class="eyebrow">Make it yours</p>
-          <h2 class="heading">The model is the beginning, not the finish.</h2>
+          <p class="eyebrow">Thoughtfully selected</p>
+          <h2 class="heading">Ready to live in.</h2>
         </div>
 
         <p class="lede">
-          Abbott Brothers works with you on the selections that shape
-          how the finished ADU looks and feels, while coordinating the
-          path from site preparation through delivery and furnishing.
+          Each model is designed around a cohesive, professionally selected
+          interior package. Abbott Brothers coordinates the path from site
+          preparation through delivery, finishing, and furnishing.
         </p>
       </div>
 
@@ -132,6 +133,19 @@ const { model } = Astro.props;
             <span>0{index + 1}</span>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
+
+            {
+              item.link && item.linkLabel && (
+                <a
+                  class="make-yours__link"
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {item.linkLabel} <span aria-hidden="true">↗</span>
+                </a>
+              )
+            }
           </article>
         ))}
       </div>
@@ -325,6 +339,18 @@ const { model } = Astro.props;
   .make-yours__options p {
     margin: 0;
     color: var(--color-olive-soft);
+  }
+
+  .make-yours__link {
+    display: inline-flex;
+    gap: 0.4rem;
+    width: fit-content;
+    margin-top: 1rem;
+    padding-bottom: 0.12rem;
+    border-bottom: 1px solid rgba(38, 50, 41, 0.35);
+    color: var(--color-olive);
+    font-size: 0.76rem;
+    font-weight: 700;
   }
 
   .model-contact {

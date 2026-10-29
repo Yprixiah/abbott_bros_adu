@@ -7,6 +7,7 @@ export type AduModel = {
   description: string;
   bedrooms: number;
   bathrooms: number;
+  squareFeet: number | null;
   floorplanPreview: string;
   floorplanPdf: string;
   highlights: string[];
@@ -17,6 +18,8 @@ export type AduModel = {
   customization: {
     title: string;
     description: string;
+    link?: string;
+    linkLabel?: string;
   }[];
 };
 
@@ -32,6 +35,7 @@ export const models: AduModel[] = [
       "The Olive is the most compact model in the Abbott Brothers collection, designed for homeowners who want a complete additional living space with a smaller footprint.",
     bedrooms: 1,
     bathrooms: 1,
+    squareFeet: null,
     floorplanPreview: "/assets/floorplans/previews/olive-floorplan.webp",
     floorplanPdf: "/assets/floorplans/source/olive-floorplan.pdf",
     highlights: [
@@ -58,17 +62,19 @@ export const models: AduModel[] = [
       {
         title: "Exterior character",
         description:
-          "Shape the exterior expression with finish and material selections appropriate to your property.",
+          "A defined architectural starting point designed to sit naturally within the property.",
       },
       {
-        title: "Interior finishes",
+        title: "Selected Interior Touches & Appliances",
         description:
-          "Choose the surfaces, cabinetry, fixtures, flooring, and details that define the finished space.",
+          "Cabinetry, flooring, hardware, fixtures, options, and home equipment are thoughtfully designated in advance as one cohesive package, creating an elegant turn-key residence while removing tedious design decisions.",
       },
       {
         title: "Furnishing & styling",
         description:
-          "Complete the ADU with a coordinated furniture and styling package.",
+          "A coordinated furniture and styling package developed with a professional interior designer completes the space.",
+        link: "https://www.leslieannid.com/",
+        linkLabel: "Leslie Ann Interior Design",
       },
     ],
   },
@@ -84,6 +90,7 @@ export const models: AduModel[] = [
       "The Cypress balances a generous entertaining area with a private bedroom suite, creating a versatile ADU for guests, work, recreation, or longer-term living.",
     bedrooms: 1,
     bathrooms: 1,
+    squareFeet: null,
     floorplanPreview: "/assets/floorplans/previews/cypress-floorplan.webp",
     floorplanPdf: "/assets/floorplans/source/cypress-floorplan.pdf",
     highlights: [
@@ -110,17 +117,19 @@ export const models: AduModel[] = [
       {
         title: "Exterior character",
         description:
-          "Adapt the exterior finish palette to complement the surrounding property.",
+          "A defined architectural starting point designed to sit naturally within the property.",
       },
       {
-        title: "Interior finishes",
+        title: "Selected Interior Touches & Appliances",
         description:
-          "Select cabinetry, fixtures, surfaces, and flooring to establish the interior character.",
+          "Cabinetry, flooring, hardware, fixtures, options, and home equipment are thoughtfully designated in advance as one cohesive package, creating an elegant turn-key residence while removing tedious design decisions.",
       },
       {
         title: "Furnishing & styling",
         description:
-          "Coordinate entertaining, living, and guest spaces with a complete furnishing package.",
+          "A coordinated furniture and styling package developed with a professional interior designer completes the space.",
+        link: "https://www.leslieannid.com/",
+        linkLabel: "Leslie Ann Interior Design",
       },
     ],
   },
@@ -135,7 +144,8 @@ export const models: AduModel[] = [
     description:
       "The Laurel is the most expansive model in the current collection, offering multiple living zones and a layout designed for homeowners who want greater flexibility and separation of space.",
     bedrooms: 2,
-    bathrooms: 1,
+    bathrooms: 1.5,
+    squareFeet: null,
     floorplanPreview: "/assets/floorplans/previews/laurel-floorplan.webp",
     floorplanPdf: "/assets/floorplans/source/laurel-floorplan.pdf",
     highlights: [
@@ -162,17 +172,19 @@ export const models: AduModel[] = [
       {
         title: "Exterior character",
         description:
-          "Tailor the exterior finishes and details to create the right relationship with the property.",
+          "A defined architectural starting point designed to sit naturally within the property.",
       },
       {
-        title: "Interior finishes",
+        title: "Selected Interior Touches & Appliances",
         description:
-          "Define the interior palette across the expanded living and bedroom spaces.",
+          "Cabinetry, flooring, hardware, fixtures, options, and home equipment are thoughtfully designated in advance as one cohesive package, creating an elegant turn-key residence while removing tedious design decisions.",
       },
       {
         title: "Furnishing & styling",
         description:
-          "Complete the larger footprint with coordinated furniture, lighting, and finishing touches.",
+          "A coordinated furniture and styling package developed with a professional interior designer completes the space.",
+        link: "https://www.leslieannid.com/",
+        linkLabel: "Leslie Ann Interior Design",
       },
     ],
   },

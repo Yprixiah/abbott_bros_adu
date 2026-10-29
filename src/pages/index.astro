@@ -128,7 +128,7 @@ import { models } from "../data/models";
           <p class="offsite-card__eyebrow">Manufacturing partner</p>
           <h3 class="offsite-card__title">Off-site fabrication</h3>
           <p class="offsite-card__meta">
-            Xtreme Manufacturing · Las Vegas area, Nevada
+            Las Vegas, Nevada
           </p>
         </div>
 
@@ -170,14 +170,6 @@ import { models } from "../data/models";
           </div>
         </div>
 
-        <a
-          class="offsite-card__link"
-          href="https://www.xmfg.com/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Visit Xtreme Manufacturing <span aria-hidden="true">↗</span>
-        </a>
       </div>
 
       <div>
@@ -185,10 +177,42 @@ import { models } from "../data/models";
         <h2 class="heading">Less construction in your backyard.</h2>
 
         <p class="lede">
-          The structural building is manufactured off-site by
-          Xtreme Manufacturing while the property is prepared for its
-          arrival. Abbott Brothers coordinates the path from fabrication
-          through delivery, installation, and finishing.
+          The structural building is manufactured off-site in Las Vegas,
+          Nevada while the property is prepared for its arrival. Abbott
+          Brothers coordinates the path from fabrication through delivery,
+          installation, and finishing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section streamlined">
+    <div class="page-width streamlined__grid">
+      <div>
+        <p class="eyebrow">Streamlined by design</p>
+
+        <h2 class="heading">
+          Designed to support a simpler permitting and installation path.
+        </h2>
+      </div>
+
+      <div class="streamlined__copy">
+        <p>
+          Our prefabricated ADUs are developed around a coordinated off-site
+          construction approach intended to reduce complexity from planning
+          through installation. Final permitting, inspections, and site
+          requirements remain subject to local jurisdiction requirements.
+        </p>
+
+        <p>
+          By completing the majority of construction off-site, we reduce
+          disruption to the property, shorten on-site construction activity,
+          and provide a more efficient alternative to traditional building
+          methods.
+        </p>
+
+        <p class="streamlined__closing">
+          Thoughtfully Built. Seamlessly Delivered.
         </p>
       </div>
     </div>
@@ -561,4 +585,41 @@ import { models } from "../data/models";
       min-height: 25rem;
     }
   }
+
+  .streamlined {
+    border-top: 1px solid rgba(38, 50, 41, 0.1);
+    background: var(--color-ivory-soft);
+  }
+
+  .streamlined__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: clamp(3rem, 8vw, 8rem);
+  }
+
+  .streamlined__copy {
+    display: grid;
+    gap: 1.25rem;
+    color: var(--color-olive-soft);
+  }
+
+  .streamlined__copy p {
+    margin: 0;
+  }
+
+  .streamlined__closing {
+    margin-top: 0.6rem !important;
+    color: var(--color-olive) !important;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.1;
+  }
+
+  @media (max-width: 800px) {
+    .streamlined__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
 </style>
