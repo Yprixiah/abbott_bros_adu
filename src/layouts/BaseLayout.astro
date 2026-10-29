@@ -12,6 +12,12 @@ const {
   title = "Abbott Brothers Development",
   description = "Premium prefabricated ADUs designed around the way you live.",
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const socialImageUrl = new URL(
+  "/assets/images/hero-pool-exterior.webp",
+  Astro.site
+);
 ---
 
 <!doctype html>
@@ -26,7 +32,23 @@ const {
 
 
     <meta name="description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Abbott Brothers Development" />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta
+      property="og:image:alt"
+      content="Abbott Brothers Development ADU beside a landscaped backyard pool"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
   </head>
