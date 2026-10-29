@@ -18,6 +18,22 @@ const socialImageUrl = new URL(
   "/assets/images/hero-pool-exterior.webp",
   Astro.site
 );
+
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": "https://adu.abbottdevelopment.com/#organization",
+  name: "Abbott Brothers Development",
+  url: "https://adu.abbottdevelopment.com/",
+  logo: "https://adu.abbottdevelopment.com/assets/brand/ab-banner.png",
+  image: "https://adu.abbottdevelopment.com/assets/images/hero-pool-exterior.webp",
+  description:
+    "Thoughtfully designed prefabricated ADUs with a coordinated path from planning through delivery and finishing.",
+  areaServed: {
+    "@type": "State",
+    name: "California",
+  },
+};
 ---
 
 <!doctype html>
@@ -49,6 +65,11 @@ const socialImageUrl = new URL(
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(businessSchema)}
+    />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
   </head>
