@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adu.abbottdevelopment.com/sitemap-index.xml
