@@ -79,7 +79,12 @@ import { models } from "../../data/models";
         </ol>
       </aside>
 
-      <form class="quote-form" id="quote-form">
+      <form
+        class="quote-form"
+        id="quote-form"
+        action="https://formspree.io/f/meaazbgk"
+        method="POST"
+      >
         <div class="quote-form__row">
           <label>
             <span>Name *</span>
@@ -181,20 +186,17 @@ import { models } from "../../data/models";
           </button>
 
           <p>
-            This staging form is not yet connected to Abbott Brothers'
-            inquiry system.
+            Your inquiry will be sent directly to Abbott Brothers Development.
           </p>
         </div>
 
         <div
           class="quote-form__staging"
-          id="quote-form-staging"
+          id="quote-form-status"
           role="status"
+          aria-live="polite"
           hidden
-        >
-          The form experience is working. Submission delivery will be
-          connected before launch.
-        </div>
+        ></div>
       </form>
     </div>
   </section>
@@ -253,21 +255,125 @@ import { models } from "../../data/models";
     }
 
     const form = document.querySelector("#quote-form");
-    const stagingMessage = document.querySelector("#quote-form-staging");
+    const statusMessage = document.querySelector("#quote-form-status");
 
-    form?.addEventListener("submit", (event) => {
+    form?.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      if (form instanceof HTMLFormElement && !form.reportValidity()) {
+      if (!(form instanceof HTMLFormElement)) {
         return;
       }
 
-      if (stagingMessage instanceof HTMLElement) {
-        stagingMessage.hidden = false;
-        stagingMessage.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      const submitButton = form.querySelector('button[type="submit"]');
+
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending…";
+      }
+
+      if (statusMessage instanceof HTMLElement) {
+        statusMessage.hidden = true;
+        statusMessage.textContent = "";
+      }
+
+      try {
+        const formData = new FormData(form);
+
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
         });
+
+        if (!response.ok) {
+          let message =
+            "Something went wrong while sending your inquiry. Please try again.";
+
+          try {
+            const data = await response.json();
+
+            if (Array.isArray(data.errors) && data.errors.length > 0) {
+              message = data.errors
+                .map((error: { message?: string }) => error.message)
+                .filter(Boolean)
+                .join(" ");
+            }
+          } catch {
+            // Keep the generic error message.
+          }
+
+          throw new Error(message);
+        }
+
+        if (statusMessage instanceof HTMLElement) {
+          statusMessage.textContent =
+            "Thank you. Your inquiry has been sent to Abbott Brothers Development.";
+          statusMessage.hidden = false;
+          statusMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+          });
+        }
+
+        // Record a conversion only after Formspree confirms success.
+        if (typeof window.gtag === "function") {
+          const analyticsParams: Record<string, string> = {};
+
+          const model = formData.get("model");
+          const intendedUse = formData.get("use");
+          const timeline = formData.get("timeline");
+
+          if (
+            typeof model === "string" &&
+            ["olive", "cypress", "laurel"].includes(model)
+          ) {
+            analyticsParams.model = model;
+          }
+
+          if (typeof intendedUse === "string" && intendedUse) {
+            analyticsParams.intended_use = intendedUse;
+          }
+
+          if (typeof timeline === "string" && timeline) {
+            analyticsParams.timeline = timeline;
+          }
+
+          window.gtag("event", "quote_submit", analyticsParams);
+        }
+
+        form.reset();
+
+        if (
+          requestedModel &&
+          requestedModel in modelNames &&
+          modelSelect instanceof HTMLSelectElement
+        ) {
+          modelSelect.value = requestedModel;
+        }
+      } catch (error) {
+        if (statusMessage instanceof HTMLElement) {
+          statusMessage.textContent =
+            error instanceof Error
+              ? error.message
+              : "Something went wrong while sending your inquiry. Please try again.";
+
+          statusMessage.hidden = false;
+          statusMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+          });
+        }
+      } finally {
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Send Inquiry";
+        }
       }
     });
   </script>

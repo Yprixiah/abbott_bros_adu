@@ -145,39 +145,6 @@ const businessSchema = {
           sendEvent("quote_start", params);
         });
 
-        // --------------------------------------------------
-        // Valid quote-form submissions
-        // --------------------------------------------------
-
-        document.addEventListener("submit", (event) => {
-          const form = event.target;
-
-          if (!(form instanceof HTMLFormElement)) return;
-          if (form.id !== "quote-form") return;
-          if (!form.checkValidity()) return;
-
-          const data = new FormData(form);
-
-          const model = data.get("model");
-          const intendedUse = data.get("use");
-          const timeline = data.get("timeline");
-
-          const params = {};
-
-          if (typeof model === "string" && validModels.has(model)) {
-            params.model = model;
-          }
-
-          if (typeof intendedUse === "string" && intendedUse) {
-            params.intended_use = intendedUse;
-          }
-
-          if (typeof timeline === "string" && timeline) {
-            params.timeline = timeline;
-          }
-
-          sendEvent("quote_submit", params);
-        });
       })();
     </script>
   </body>
